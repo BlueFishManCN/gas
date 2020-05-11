@@ -17,7 +17,7 @@ class Base extends CI_Controller
 	public function test()
 	{
 		if ($this->input->method(TRUE) == 'POST' or $this->input->method(TRUE) == 'OPTIONS') {
-			$command = escapeshellcmd('');
+			$command = escapeshellcmd('ls');
 			$data = array();
 			$data['command'] = $command;
 			exec($command, $data['output'], $data['return_val']);
