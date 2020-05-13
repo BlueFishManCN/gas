@@ -21,6 +21,7 @@ class Amp extends CI_Controller
 			$pageSize = $this->input->get('pageSize', TRUE);
 			$currentPage = $this->input->get('currentPage', TRUE);
 			$ampId = $this->input->get('ampId', TRUE);
+			$familyId = $this->input->get('familyId', TRUE);
 			$sequence = $this->input->get('sequence', TRUE);
 			$minLength = $this->input->get('minLength', TRUE);
 			$maxLength = $this->input->get('maxLength', TRUE);
@@ -29,8 +30,8 @@ class Amp extends CI_Controller
 			$minCharge = $this->input->get('minCharge', TRUE);
 			$maxCharge = $this->input->get('maxCharge', TRUE);
 
-			$data['count'] = $this->Amp_family_model->count($ampId, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge);
-			$data['AMP'] = $this->Amp_family_model->read($ampId, $pageSize, $currentPage, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge);
+			$data['count'] = $this->Amp_family_model->count($ampId, $familyId, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge);
+			$data['AMP'] = $this->Amp_family_model->read($ampId, $familyId, $pageSize, $currentPage, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge);
 
 			foreach ($data['AMP'] as $key => $value) {
 				$data['AMP'][$key]['pI'] = trim(rtrim(sprintf("%.4f", $value['pI']), '0'), '.');
