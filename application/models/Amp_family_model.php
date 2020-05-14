@@ -13,6 +13,18 @@ class Amp_family_model extends CI_Model
 	}
 
 	/**
+	 * @param $ampId
+	 * @return mixed
+	 */
+	public function index($ampId)
+	{
+		$this->db->select('*');
+		$this->db->from('amp_family');
+		$this->db->where('AMP_ID', $ampId);
+		return $this->db->get()->result_array();
+	}
+
+	/**
 	 * @param $id
 	 * @param $pageSize
 	 * @param $currentPage
