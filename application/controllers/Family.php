@@ -10,6 +10,7 @@ class Family extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Family_amp_model');
+		$this->load->model('Family_environment_model');
 		$this->load->model('Family_avg_feature_model');
 		$this->load->model('Family_std_feature_model');
 	}
@@ -24,12 +25,15 @@ class Family extends CI_Controller
 
 			if ($familyId != '') {
 				$data['Family_AMP'] = $this->Family_amp_model->index($familyId);
+				$data['Family_Environment'] = $this->Family_environment_model->getByFamilyID($familyId);
 				$data['Family_Avg_Feature'] = $this->Family_avg_feature_model->index($familyId);
 				$data['Family_Std_Feature'] = $this->Family_std_feature_model->index($familyId);
 
 				if ($data['Family_AMP'] != null) {
 					$data['Family_AMP'][0]["Length_Avg"] = trim(rtrim(sprintf("%.4f", $data['Family_AMP'][0]["Length_Avg"]), '0'), '.');
+				}
 
+				if ($data['Family_Avg_Feature'] != null) {
 					$data['Family_Avg_Feature'][0]["tinyAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["tinyAA"]), '0'), '.');
 					$data['Family_Avg_Feature'][0]["smallAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["smallAA"]), '0'), '.');
 					$data['Family_Avg_Feature'][0]["aliphaticAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["aliphaticAA"]), '0'), '.');
@@ -58,7 +62,9 @@ class Family extends CI_Controller
 					$data['Family_Avg_Feature'][0]["HELIX"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["HELIX"]), '0'), '.');
 					$data['Family_Avg_Feature'][0]["HELAGG"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["HELAGG"]), '0'), '.');
 					$data['Family_Avg_Feature'][0]["BETA"] = trim(rtrim(sprintf("%.4f", $data['Family_Avg_Feature'][0]["BETA"]), '0'), '.');
+				}
 
+				if ($data['Family_Std_Feature'] != null) {
 					$data['Family_Std_Feature'][0]["tinyAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["tinyAA"]), '0'), '.');
 					$data['Family_Std_Feature'][0]["smallAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["smallAA"]), '0'), '.');
 					$data['Family_Std_Feature'][0]["aliphaticAA"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["aliphaticAA"]), '0'), '.');
@@ -87,16 +93,12 @@ class Family extends CI_Controller
 					$data['Family_Std_Feature'][0]["HELIX"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["HELIX"]), '0'), '.');
 					$data['Family_Std_Feature'][0]["HELAGG"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["HELAGG"]), '0'), '.');
 					$data['Family_Std_Feature'][0]["BETA"] = trim(rtrim(sprintf("%.4f", $data['Family_Std_Feature'][0]["BETA"]), '0'), '.');
-
-					$this->output
-						->set_status_header(200)
-						->set_content_type('application/json')
-						->set_output(json_encode($data));
-				} else {
-					$this->output
-						->set_status_header(204)
-						->set_content_type('application/json');
 				}
+
+				$this->output
+					->set_status_header(200)
+					->set_content_type('application/json')
+					->set_output(json_encode($data));
 			} else {
 				$this->output
 					->set_status_header(204)

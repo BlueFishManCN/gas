@@ -33,7 +33,7 @@ class Amp_card extends CI_Controller
 				$data['AMP_Metagenome'] = $this->Amp_metagenome_model->index($ampId);
 				$data['AMP_Prediction'] = $this->Amp_prediction_model->index($ampId);
 
-				if ($data['AMP_Family'] != null) {
+				if ($data['AMP_Feature'] != null) {
 					$data['AMP_Feature'][0]["tinyAA"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["tinyAA"]), '0'), '.');
 					$data['AMP_Feature'][0]["smallAA"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["smallAA"]), '0'), '.');
 					$data['AMP_Feature'][0]["aliphaticAA"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["aliphaticAA"]), '0'), '.');
@@ -62,19 +62,17 @@ class Amp_card extends CI_Controller
 					$data['AMP_Feature'][0]["HELIX"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["HELIX"]), '0'), '.');
 					$data['AMP_Feature'][0]["HELAGG"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["HELAGG"]), '0'), '.');
 					$data['AMP_Feature'][0]["BETA"] = trim(rtrim(sprintf("%.4f", $data['AMP_Feature'][0]["BETA"]), '0'), '.');
+				}
 
+				if ($data['AMP_Prediction'] != null) {
 					$data['AMP_Prediction'][0]["AMP_Probability"] = trim(rtrim(sprintf("%.4f", $data['AMP_Prediction'][0]["AMP_Probability"]), '0'), '.');
 					$data['AMP_Prediction'][0]["Hemolysis_Probability"] = trim(rtrim(sprintf("%.4f", $data['AMP_Prediction'][0]["Hemolysis_Probability"]), '0'), '.');
-
-					$this->output
-						->set_status_header(200)
-						->set_content_type('application/json')
-						->set_output(json_encode($data));
-				} else {
-					$this->output
-						->set_status_header(204)
-						->set_content_type('application/json');
 				}
+
+				$this->output
+					->set_status_header(200)
+					->set_content_type('application/json')
+					->set_output(json_encode($data));
 			} else {
 				$this->output
 					->set_status_header(204)
