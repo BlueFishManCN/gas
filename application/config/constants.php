@@ -1,9 +1,11 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-defined('RUN_PATH') or define('RUN_PATH', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/run/');
+//defined('RUN_PATH') or define('RUN_PATH', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/run/');
+defined('RUN_PATH') or define('RUN_PATH', '/opt/lampp/htdocs/gas/shell/run/');
 
-defined('BLAST_DB') or define('BLAST_DB', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/blastdb/GAS_v1');
+//defined('BLAST_DB') or define('BLAST_DB', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/blastdb/GAS_v1');
+defined('BLAST_DB') or define('BLAST_DB', '/opt/lampp/htdocs/gas/shell/blastdb/GAS_v1');
 
 //defined('BLASTP_PATH') or define('BLASTP_PATH', '/usr/local/bin/blastp');
 defined('BLASTP_PATH') or define('BLASTP_PATH', '/opt/lampp/htdocs/gas/shell/ncbi-blast-2.10.0+/bin/blastp');
