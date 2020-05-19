@@ -20,7 +20,7 @@ class Family extends CI_Controller
 	 */
 	public function index()
 	{
-		if ($this->input->method(TRUE) == 'GET' or $this->input->method(TRUE) == 'OPTIONS') {
+		if ($this->input->method(TRUE) == 'GET') {
 			$familyId = $this->input->get('familyId', TRUE);
 
 			if ($familyId != '') {
@@ -104,6 +104,10 @@ class Family extends CI_Controller
 					->set_status_header(204)
 					->set_content_type('application/json');
 			}
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
 		} else {
 			$this->output
 				->set_status_header(405)

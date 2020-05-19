@@ -17,7 +17,7 @@ class Amp extends CI_Controller
 	 */
 	public function index()
 	{
-		if ($this->input->method(TRUE) == 'GET' or $this->input->method(TRUE) == 'OPTIONS') {
+		if ($this->input->method(TRUE) == 'GET') {
 			$pageSize = $this->input->get('pageSize', TRUE);
 			$currentPage = $this->input->get('currentPage', TRUE);
 			$ampId = $this->input->get('ampId', TRUE);
@@ -45,32 +45,14 @@ class Amp extends CI_Controller
 				->set_status_header(200)
 				->set_content_type('application/json')
 				->set_output(json_encode($data));
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
 		} else {
 			$this->output
 				->set_status_header(405)
 				->set_content_type('application/json');
 		}
 	}
-
-//	/**
-//	 * @return bool
-//	 */
-//	public function test()
-//	{
-//		if ($this->input->method(TRUE) == 'POST' or $this->input->method(TRUE) == 'OPTIONS') {
-//			$command = escapeshellcmd('ls');
-//			$data = array();
-//			$data['command'] = $command;
-//			exec($command, $data['output'], $data['return_val']);
-//			$this->output
-//				->set_status_header(200)
-//				->set_content_type('application/json')
-//				->set_output(json_encode($data));
-//		} else {
-//			$this->output
-//				->set_status_header(405)
-//				->set_content_type('application/json')
-//				->set_output();
-//		}
-//	}
 }
