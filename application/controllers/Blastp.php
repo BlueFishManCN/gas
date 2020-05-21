@@ -10,8 +10,6 @@ class Blastp extends CI_Controller
 	{
 		parent::__construct();
 		$this->load->model('Blast_log_model');
-		$this->load->helper('file');
-		$this->load->helper('string');
 	}
 
 	/**
@@ -166,6 +164,29 @@ class Blastp extends CI_Controller
 					->set_status_header(400)
 					->set_output($data['error']);
 			}
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function download()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$url = $this->input->get('url', TRUE);
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('blob')
+				->set_output(file_get_contents(base_url('/shell/run/' . $url)));
 		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
 			$this->output
 				->set_status_header(200)

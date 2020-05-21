@@ -9,6 +9,7 @@ class Amp extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Amp_db_model');
 		$this->load->model('Amp_family_model');
 	}
 
@@ -45,6 +46,52 @@ class Amp extends CI_Controller
 				->set_status_header(200)
 				->set_content_type('application/json')
 				->set_output(json_encode($data));
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function db()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$data['AMPDB'] = $this->Amp_db_model->index();
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json')
+				->set_output(json_encode($data));
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function ampDbDownload()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$name = $this->input->get('name', TRUE);
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('blob')
+				->set_output(file_get_contents(base_url('/shell/ampdb/' . $name)));
 		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
 			$this->output
 				->set_status_header(200)

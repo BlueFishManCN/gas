@@ -9,9 +9,8 @@ class Hmmer extends CI_Controller
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->model('Hmmer_db_model');
 		$this->load->model('Hmmer_log_model');
-		$this->load->helper('file');
-		$this->load->helper('string');
 	}
 
 	/**
@@ -145,6 +144,75 @@ class Hmmer extends CI_Controller
 					->set_status_header(400)
 					->set_output($data['error']);
 			}
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function download()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$url = $this->input->get('url', TRUE);
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('blob')
+				->set_output(file_get_contents(base_url('/shell/run/' . $url)));
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function db()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$data['HMMERDB'] = $this->Hmmer_db_model->index();
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json')
+				->set_output(json_encode($data));
+		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
+			$this->output
+				->set_status_header(200)
+				->set_content_type('application/json');
+		} else {
+			$this->output
+				->set_status_header(405)
+				->set_content_type('application/json');
+		}
+	}
+
+	/**
+	 *
+	 */
+	public function hmmerDbDownload()
+	{
+		if ($this->input->method(TRUE) == 'GET') {
+			$name = $this->input->get('name', TRUE);
+
+			$this->output
+				->set_status_header(200)
+				->set_content_type('blob')
+				->set_output(file_get_contents(base_url('/shell/hmmerdb/' . $name)));
 		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
 			$this->output
 				->set_status_header(200)
