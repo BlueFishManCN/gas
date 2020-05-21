@@ -209,6 +209,11 @@ class Hmmer extends CI_Controller
 		if ($this->input->method(TRUE) == 'GET') {
 			$name = $this->input->get('name', TRUE);
 
+			$ip = $this->input->ip_address();
+			if ($ip != '127.0.0.1') {
+				$this->Hmmer_db_model->addTimes($name);
+			}
+
 			$this->output
 				->set_status_header(200)
 				->set_content_type('blob')

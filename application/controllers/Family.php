@@ -126,7 +126,7 @@ class Family extends CI_Controller
 			$this->output
 				->set_status_header(200)
 				->set_content_type('blob')
-				->set_output(file_get_contents(base_url("/assets" . $url)));
+				->set_output(file_get_contents(base_url("/assets/" . $url)));
 		} elseif ($this->input->method(TRUE) == 'OPTIONS') {
 			$this->output
 				->set_status_header(200)
