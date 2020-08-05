@@ -1,31 +1,25 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- * Class Family
- */
 class Family extends CI_Controller
 {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Family_amp_model');
-		$this->load->model('Family_environment_model');
+		$this->load->model('Amp_family_model');
+		$this->load->model('Amp_environment_model');
 		$this->load->model('Family_avg_feature_model');
 		$this->load->model('Family_std_feature_model');
 	}
 
-	/**
-	 *
-	 */
 	public function index()
 	{
 		if ($this->input->method(TRUE) == 'GET') {
 			$familyId = $this->input->get('familyId', TRUE);
 
 			if ($familyId != '') {
-				$data['Family_AMP'] = $this->Family_amp_model->index($familyId);
-				$data['Family_Environment'] = $this->Family_environment_model->getByFamilyID($familyId);
+				$data['Family_AMP'] = $this->Amp_family_model->getByFamilyID($familyId);
+				$data['Family_Environment'] = $this->Amp_environment_model->getByFamilyID($familyId);
 				$data['Family_Avg_Feature'] = $this->Family_avg_feature_model->index($familyId);
 				$data['Family_Std_Feature'] = $this->Family_std_feature_model->index($familyId);
 
@@ -115,9 +109,6 @@ class Family extends CI_Controller
 		}
 	}
 
-	/**
-	 *
-	 */
 	public function download()
 	{
 		if ($this->input->method(TRUE) == 'GET') {

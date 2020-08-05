@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- * Class Environment
- */
 class Environment extends CI_Controller
 {
 	public function __construct()
@@ -11,12 +8,8 @@ class Environment extends CI_Controller
 		parent::__construct();
 		$this->load->model('Environment_amp_model');
 		$this->load->model('Amp_environment_model');
-		$this->load->model('Family_environment_model');
 	}
 
-	/**
-	 *
-	 */
 	public function index()
 	{
 		if ($this->input->method(TRUE) == 'GET') {
@@ -28,10 +21,10 @@ class Environment extends CI_Controller
 
 			if ($environment != '') {
 				$data['Environment_AMP'] = $this->Environment_amp_model->index($environment);
-				$data['sCount'] = $this->Amp_environment_model->count($environment);
+				$data['sCount'] = $this->Amp_environment_model->countSequence($environment);
 				$data['Environment_Sequence'] = $this->Amp_environment_model->getByEnvironment($environment, $sPageSize, $sCurrentPage);
-				$data['fCount'] = $this->Family_environment_model->count($environment);
-				$data['Environment_Family'] = $this->Family_environment_model->getByEnvironment($environment, $fPageSize, $fCurrentPage);
+				$data['fCount'] = $this->Amp_environment_model->countFamily($environment);
+				$data['Environment_Family'] = $this->Amp_environment_model->getByEnvironmentForFamily($environment, $fPageSize, $fCurrentPage);
 
 				if ($data['Environment_AMP'] != null) {
 					$data['Environment_AMP'][0]["Length_Avg"] = trim(rtrim(sprintf("%.4f", $data['Environment_AMP'][0]["Length_Avg"]), '0'), '.');
@@ -63,9 +56,6 @@ class Environment extends CI_Controller
 		}
 	}
 
-	/**
-	 *
-	 */
 	public function sequence()
 	{
 		if ($this->input->method(TRUE) == 'GET') {
@@ -74,7 +64,7 @@ class Environment extends CI_Controller
 			$sCurrentPage = $this->input->get('sCurrentPage', TRUE);
 
 			if ($environment != '') {
-				$data['sCount'] = $this->Amp_environment_model->count($environment);
+				$data['sCount'] = $this->Amp_environment_model->countSequence($environment);
 				$data['Environment_Sequence'] = $this->Amp_environment_model->getByEnvironment($environment, $sPageSize, $sCurrentPage);
 
 				$this->output
@@ -97,9 +87,6 @@ class Environment extends CI_Controller
 		}
 	}
 
-	/**
-	 *
-	 */
 	public function family()
 	{
 		if ($this->input->method(TRUE) == 'GET') {
@@ -108,8 +95,8 @@ class Environment extends CI_Controller
 			$fCurrentPage = $this->input->get('fCurrentPage', TRUE);
 
 			if ($environment != '') {
-				$data['fCount'] = $this->Family_environment_model->count($environment);
-				$data['Environment_Family'] = $this->Family_environment_model->getByEnvironment($environment, $fPageSize, $fCurrentPage);
+				$data['fCount'] = $this->Amp_environment_model->countFamily($environment);
+				$data['Environment_Family'] = $this->Amp_environment_model->getByEnvironmentForFamily($environment, $fPageSize, $fCurrentPage);
 
 				if ($data['Environment_Family'] != null) {
 					foreach ($data['Environment_Family'] as $key => $value) {

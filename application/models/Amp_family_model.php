@@ -1,9 +1,6 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-/**
- * Class Amp_family_model
- */
 class Amp_family_model extends CI_Model
 {
 	public function __construct()
@@ -12,10 +9,6 @@ class Amp_family_model extends CI_Model
 		$this->load->database();
 	}
 
-	/**
-	 * @param $ampId
-	 * @return mixed
-	 */
 	public function index($ampId)
 	{
 		$this->db->select('*');
@@ -24,19 +17,6 @@ class Amp_family_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	/**
-	 * @param $id
-	 * @param $pageSize
-	 * @param $currentPage
-	 * @param $sequence
-	 * @param $minLength
-	 * @param $maxLength
-	 * @param $minpI
-	 * @param $maxpI
-	 * @param $minCharge
-	 * @param $maxCharge
-	 * @return mixed
-	 */
 	public function read($ampId, $familyId, $environment, $pageSize, $currentPage, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge)
 	{
 		$this->db->select('amp_family.*,amp_feature.pI,amp_feature.charge');
@@ -80,17 +60,6 @@ class Amp_family_model extends CI_Model
 		return $this->db->get()->result_array();
 	}
 
-	/**
-	 * @param $id
-	 * @param $sequence
-	 * @param $minLength
-	 * @param $maxLength
-	 * @param $minpI
-	 * @param $maxpI
-	 * @param $minCharge
-	 * @param $maxCharge
-	 * @return mixed
-	 */
 	public function count($ampId, $familyId, $environment, $sequence, $minLength, $maxLength, $minpI, $maxpI, $minCharge, $maxCharge)
 	{
 		$this->db->select('amp_family.*,amp_feature.pI,amp_feature.charge');
@@ -130,5 +99,10 @@ class Amp_family_model extends CI_Model
 			$this->db->where('amp_feature.Charge <=', $maxCharge);
 		}
 		return $this->db->count_all_results();
+	}
+
+	public function getByFamilyID($familyId)
+	{
+		return $this->db->query('SELECT Family_ID, COUNT(AMP_ID) AS AMP_Count, AVG(Length) AS Length_Avg FROM amp_family where Family_ID="' . $familyId . '"')->result_array();
 	}
 }
