@@ -11,6 +11,7 @@ Be sure to read the install instructions and FAQs:
 2. [Windows FAQs](https://www.apachefriends.org/faq_windows.html)
 3. [OS X FAQs](https://www.apachefriends.org/faq_osx.html)
 4. [OS X XAMPP-VM FAQs](https://www.apachefriends.org/faq_stackman.html)
+
 You can find additional help on [forums](https://community.apachefriends.org/) or [Stack Overflow](http://stackoverflow.com/search?q=xampp).
 
 #### 2. INSTALL blast+, HMMER, and Python(MySQLdb, numpy, pandas)
@@ -49,7 +50,7 @@ $db['default'] = array(
 #### 4. Import or update data
 
 #### 5. DEPLOY gas frontend
-1. GIT CLONE [gas_frontend/web](https://github.com/BlueFishManCN/gas-frontend) to the XAMPP/xamppfiles/htdocs.
+1. GIT CLONE [gas_frontend/web](https://github.com/BlueFishManCN/gas-frontend/tree/master/web) to the XAMPP/xamppfiles/htdocs.
 2. visit [http://127.0.0.1/web/#/home](http://127.0.0.1/web/#/home).
 
 # How to develop the gas?
