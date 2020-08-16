@@ -48,5 +48,24 @@ application/logs/*
 !application/logs/.htaccess
 /vendor/
 
-shell/*
-assets/*
+shell/ampdb/*
+!shell/ampdb/index.html
+shell/blastdb/*
+!shell/blastdb/index.html
+shell/hmmerdb/*
+!shell/hmmerdb/index.html
+shell/run/*
+!shell/run/index.html
+
+assets/aln/*
+!assets/aln/index.html
+assets/family_feature/*
+!assets/family_feature/index.html
+assets/hmm/*
+!assets/hmm/index.html
+assets/logo/*
+!assets/logo/index.html
+assets/trees/*
+!assets/trees/index.html
+assets/trees_figures/*
+!assets/trees_figures/index.html

@@ -1,20 +1,15 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-//defined('RUN_PATH') or define('RUN_PATH', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/run/');
-defined('RUN_PATH') or define('RUN_PATH', '/opt/lampp/htdocs/gas/shell/run/');
+$_GAS_ROOT_PATH = '/Applications/XAMPP/xamppfiles/htdocs/gas';
+$_BLASTP_PATH = '/usr/local/bin/blastp';
+$_HMMSEARCH_PATH = '/usr/local/bin/hmmsearch';
 
-//defined('BLAST_DB') or define('BLAST_DB', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/blastdb/GAS_v1');
-defined('BLAST_DB') or define('BLAST_DB', '/opt/lampp/htdocs/gas/shell/blastdb/GAS_v1');
-
-//defined('HMMER_DB') or define('HMMER_DB', '/Applications/XAMPP/xamppfiles/htdocs/gas/shell/hmmerdb/GAF.hmm');
-defined('HMMER_DB') or define('HMMER_DB', '/opt/lampp/htdocs/gas/shell/hmmerdb/GAF.hmm');
-
-//defined('BLASTP_PATH') or define('BLASTP_PATH', '/usr/local/bin/blastp');
-defined('BLASTP_PATH') or define('BLASTP_PATH', '/opt/lampp/htdocs/gas/shell/ncbi-blast-2.10.0+/bin/blastp');
-
-//defined('HMMSEARCH_PATH') or define('HMMSEARCH_PATH', '/usr/local/bin/hmmsearch');
-defined('HMMSEARCH_PATH') or define('HMMSEARCH_PATH', '/opt/lampp/htdocs/gas/shell/hmmer-3.3/bin/hmmsearch');
+defined('RUN_PATH') or define('RUN_PATH', $_GAS_ROOT_PATH . '/shell/run/');
+defined('BLAST_DB') or define('BLAST_DB', $_GAS_ROOT_PATH . '/shell/blastdb/GAS');
+defined('HMMER_DB') or define('HMMER_DB', $_GAS_ROOT_PATH . '/shell/hmmerdb/GAF.hmm');
+defined('BLASTP_PATH') or define('BLASTP_PATH', $_BLASTP_PATH);
+defined('HMMSEARCH_PATH') or define('HMMSEARCH_PATH', $_HMMSEARCH_PATH);
 
 /*
 |--------------------------------------------------------------------------
