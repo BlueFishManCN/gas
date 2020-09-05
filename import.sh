@@ -1,4 +1,31 @@
 #!/bin/bash
+help="-h"
+from="-s"
+if [ $# -eq 2 ]; then
+    if [ $1 = $from ]; then
+        if [ -d $2 ]; then
+            echo "start import data."
+        else
+            echo "$2 is invalid."
+            exit
+        fi
+    else
+        echo "error, try sh import.sh -h."
+        exit
+    fi
+elif [ $# -eq 1 ]; then
+    if [ $1 = $help ]; then
+        echo "-s [dir] | the dir of data."
+        exit
+    else
+        echo "error, try sh import.sh -h."
+        exit
+    fi
+else
+    echo "error, try sh import.sh -h."
+    exit
+fi
+
 DIR="$(cd "$(dirname "$0")" && pwd)"
 echo $DIR
 ASSETS="$DIR/assets"
@@ -9,28 +36,6 @@ PROCESS="$DIR/process.py"
 echo $PROCESS
 PYTHON_PATH="/Users/zhangjiyuan/opt/anaconda3/bin/python"
 echo $PYTHON_PATH
-
-help="-h"
-from="-s"
-if [ $# -eq 2 ]; then
-    if [ $1 = $from ]; then
-        if [ -d $2 ]; then
-            echo "start import data."
-        else
-            echo "$2 is invalid."
-        fi
-    else
-        echo "error, try sh import.sh -h."
-    fi
-elif [ $# -eq 1 ]; then
-    if [ $1 = $help ]; then
-        echo "-s [dir] | the dir of data."
-    else
-        echo "error, try sh import.sh -h."
-    fi
-else
-    echo "error, try sh import.sh -h."
-fi
 
 if [ -d "$2/aln/" ]; then
     echo "cp $2/aln/* to $ASSETS/aln/"
