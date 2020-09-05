@@ -48,7 +48,24 @@ $db['default'] = array(
 	'database' => 'gas',
 ```
 #### 4. Import or update data
+1. Order your files. Like:
+![](https://github.com/BlueFishManCN/gas/blob/master/tree.png)
+2. CONFIGURE PYTHON_PATH in gas/import.sh. Like :
+```sh
+PYTHON_PATH="/Users/zhangjiyuan/opt/anaconda3/bin/python"
+echo $PYTHON_PATH
+```
+3. CONFIGURE hostname, username, and password of database gas in gas/process.py. Like :
+```python
+db = MySQLdb.connect("127.0.0.1", "root", "", "gas", charset='utf8')
+```
+4. RUN the script gas/import.sh. Like :
+```sh
+sh gas/import.sh -h
+-s [dir] | the dir of data.
 
+sh gas/import.sh -s /Users/zhangjiyuan/Desktop/docs/GAS_files
+```
 #### 5. DEPLOY and VISIT gas frontend
 1. GIT CLONE [gas_frontend/web](https://github.com/BlueFishManCN/gas-frontend/tree/master/web) to the XAMPP/xamppfiles/htdocs.
 2. VISIT [http://127.0.0.1/web/#/home](http://127.0.0.1/web/#/home).
