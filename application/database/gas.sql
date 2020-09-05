@@ -1,9 +1,21 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 127.0.0.1
+ Source Server Type    : MySQL
+ Source Server Version : 100413
+ Source Host           : localhost:3306
+ Source Schema         : gas
+
+ Target Server Type    : MySQL
+ Target Server Version : 100413
+ File Encoding         : 65001
+
+ Date: 06/09/2020 02:38:23
+*/
+
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
-
-DROP DATABASE IF EXISTS `gas`;
-CREATE DATABASE gas;
-USE gas;
 
 -- ----------------------------
 -- Table structure for amp_country
@@ -25,6 +37,12 @@ CREATE TABLE `amp_country` (
 ) ENGINE=MyISAM AUTO_INCREMENT=311663 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of amp_country
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for amp_db
 -- ----------------------------
 DROP TABLE IF EXISTS `amp_db`;
@@ -35,7 +53,14 @@ CREATE TABLE `amp_db` (
   `time` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `name` (`name`(250)) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of amp_db
+-- ----------------------------
+BEGIN;
+INSERT INTO `amp_db` VALUES (1, 'GAS.fasta', 0, '2020-09-06 02:34:58');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for amp_environment
@@ -59,6 +84,12 @@ CREATE TABLE `amp_environment` (
 ) ENGINE=MyISAM AUTO_INCREMENT=311663 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of amp_environment
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for amp_family
 -- ----------------------------
 DROP TABLE IF EXISTS `amp_family`;
@@ -73,6 +104,12 @@ CREATE TABLE `amp_family` (
   KEY `Length` (`Length`) USING BTREE,
   KEY `Family_ID` (`Family_ID`) USING BTREE
 ) ENGINE=MyISAM AUTO_INCREMENT=311663 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of amp_family
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for amp_feature
@@ -122,6 +159,12 @@ CREATE TABLE `amp_feature` (
 ) ENGINE=MyISAM AUTO_INCREMENT=311663 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of amp_feature
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for amp_metagenome
 -- ----------------------------
 DROP TABLE IF EXISTS `amp_metagenome`;
@@ -132,6 +175,12 @@ CREATE TABLE `amp_metagenome` (
   PRIMARY KEY (`id`) USING BTREE,
   KEY `AMP_ID` (`AMP_ID`) USING BTREE
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of amp_metagenome
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for amp_prediction
@@ -148,6 +197,12 @@ CREATE TABLE `amp_prediction` (
 ) ENGINE=MyISAM AUTO_INCREMENT=311663 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of amp_prediction
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for blast_log
 -- ----------------------------
 DROP TABLE IF EXISTS `blast_log`;
@@ -158,6 +213,12 @@ CREATE TABLE `blast_log` (
   `time` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of blast_log
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 -- ----------------------------
 -- Table structure for family_avg_feature
@@ -198,6 +259,12 @@ CREATE TABLE `family_avg_feature` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4683 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of family_avg_feature
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for family_std_feature
 -- ----------------------------
 DROP TABLE IF EXISTS `family_std_feature`;
@@ -236,6 +303,12 @@ CREATE TABLE `family_std_feature` (
 ) ENGINE=MyISAM AUTO_INCREMENT=4683 DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of family_std_feature
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for hmmer_db
 -- ----------------------------
 DROP TABLE IF EXISTS `hmmer_db`;
@@ -246,7 +319,14 @@ CREATE TABLE `hmmer_db` (
   `time` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`),
   KEY `name` (`name`(250)) USING BTREE
-) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of hmmer_db
+-- ----------------------------
+BEGIN;
+INSERT INTO `hmmer_db` VALUES (1, 'GAF.hmm', 0, '2020-09-06 02:35:51');
+COMMIT;
 
 -- ----------------------------
 -- Table structure for hmmer_log
@@ -261,6 +341,12 @@ CREATE TABLE `hmmer_log` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
+-- Records of hmmer_log
+-- ----------------------------
+BEGIN;
+COMMIT;
+
+-- ----------------------------
 -- Table structure for visit_log
 -- ----------------------------
 DROP TABLE IF EXISTS `visit_log`;
@@ -270,5 +356,11 @@ CREATE TABLE `visit_log` (
   `time` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of visit_log
+-- ----------------------------
+BEGIN;
+COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -69,3 +69,4 @@ assets/trees/*
 !assets/trees/index.html
 assets/trees_figures/*
 !assets/trees_figures/index.html
+assets/*.tsv
