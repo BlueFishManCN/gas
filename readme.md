@@ -49,7 +49,7 @@ $db['default'] = array(
 ```
 #### 4. Import or update data
 1. Order your files. Like:
-![](tree.jpg)
+![](https://raw.githubusercontent.com/BlueFishManCN/gas/master/tree.jpg)
 2. CONFIGURE PYTHON_PATH in gas/import.sh. Like :
 ```sh
 PYTHON_PATH="/Users/zhangjiyuan/opt/anaconda3/bin/python"
