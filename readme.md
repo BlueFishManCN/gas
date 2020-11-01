@@ -67,7 +67,7 @@ sh gas/import.sh -h
 sh gas/import.sh -s /Users/zhangjiyuan/Desktop/docs/GAS_files
 ```
 #### 5. DEPLOY and VISIT gas frontend
-1. GIT CLONE [gas_frontend/web](https://github.com/BlueFishManCN/gas-frontend/tree/master/web) to the XAMPP/xamppfiles/htdocs.
+1. GIT CLONE [gas_frontend/web](https://github.com/BlueFishManCN/gas-frontend/tree/master/web) to the XAMPP/xamppfiles/htdocs. ATTENTION: you need to configure the 'axios.defaults.baseURL' in src/main.js, so the frontend can send right requests to the backend. After you configure the right 'axios.defaults.baseURL', gas_frontend should be 'npm build' and get new 'gas_frontend/web'.
 2. VISIT [http://127.0.0.1/web/#/home](http://127.0.0.1/web/#/home).
 
 # How to develop the gas?
