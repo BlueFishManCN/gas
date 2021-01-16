@@ -144,19 +144,4 @@ if os.path.exists('assets/STDEV_per_family.tsv'):
         db.rollback()
         print('Error! Import STDEV_per_family.tsv to the gas database.')
 
-if os.path.exists('assets/STDEV_per_family.tsv'):
-    cursor = db.cursor()
-    sql = "INSERT INTO family_std_feature(Family_ID,tinyAA,smallAA,aliphaticAA,aromaticAA,nonpolarAA,polarAA,chargedAA,basicAA,acidicAA,charge,pI,aindex,instaindex,boman,hydrophobicity,hmoment,SA_Group1_residue0,SA_Group2_residue0,SA_Group3_residue0,HB_Group1_residue0,HB_Group2_residue0,HB_Group3_residue0,AGG,AMYLO,TURN,HELIX,HELAGG,BETA) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE Family_ID=values(Family_ID),tinyAA=values(tinyAA),smallAA=values(smallAA),aliphaticAA=values(aliphaticAA),aromaticAA=values(aromaticAA),nonpolarAA=values(nonpolarAA),polarAA=values(polarAA),chargedAA=values(chargedAA),basicAA=values(basicAA),acidicAA=values(acidicAA),charge=values(charge),pI=values(pI),aindex=values(aindex),instaindex=values(instaindex),boman=values(boman),hydrophobicity=values(hydrophobicity),hmoment=values(hmoment),SA_Group1_residue0=values(SA_Group1_residue0),SA_Group2_residue0=values(SA_Group2_residue0),SA_Group3_residue0=values(SA_Group3_residue0),HB_Group1_residue0=values(HB_Group1_residue0),HB_Group2_residue0=values(HB_Group2_residue0),HB_Group3_residue0=values(HB_Group3_residue0),AGG=values(AGG),AMYLO=values(AMYLO),TURN=values(TURN),HELIX=values(HELIX),HELAGG=values(HELAGG),BETA=values(BETA);"
-    data = pd.read_csv('assets/STDEV_per_family.tsv',
-                       sep='\t', index_col=False)
-    data = data.values.tolist()
-
-    try:
-        cursor.executemany(sql, data)
-        db.commit()
-        print('Done! Import STDEV_per_family.tsv to the gas database.')
-    except:
-        db.rollback()
-        print('Error! Import STDEV_per_family.tsv to the gas database.')
-
 db.close()
