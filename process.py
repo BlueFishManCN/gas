@@ -51,7 +51,8 @@ if os.path.exists('assets/GAS_feat_clusters.tsv'):
     cursor = db.cursor()
     sql = "INSERT INTO amp_feature(AMP_ID,Sequence,tinyAA,smallAA,aliphaticAA,aromaticAA,nonpolarAA,polarAA,chargedAA,basicAA,acidicAA,charge,pI,aindex,instaindex,boman,hydrophobicity,hmoment,SA_Group1_residue0,SA_Group2_residue0,SA_Group3_residue0,HB_Group1_residue0,HB_Group2_residue0,HB_Group3_residue0,AGG,AMYLO,TURN,HELIX,HELAGG,BETA,Level_I,Level_II,Level_III,Length) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE AMP_ID=values(AMP_ID),Sequence=values(Sequence),tinyAA=values(tinyAA),smallAA=values(smallAA),aliphaticAA=values(aliphaticAA),aromaticAA=values(aromaticAA),nonpolarAA=values(nonpolarAA),polarAA=values(polarAA),chargedAA=values(chargedAA),basicAA=values(basicAA),acidicAA=values(acidicAA),charge=values(charge),pI=values(pI),aindex=values(aindex),instaindex=values(instaindex),boman=values(boman),hydrophobicity=values(hydrophobicity),hmoment=values(hmoment),SA_Group1_residue0=values(SA_Group1_residue0),SA_Group2_residue0=values(SA_Group2_residue0),SA_Group3_residue0=values(SA_Group3_residue0),HB_Group1_residue0=values(HB_Group1_residue0),HB_Group2_residue0=values(HB_Group2_residue0),HB_Group3_residue0=values(HB_Group3_residue0),AGG=values(AGG),AMYLO=values(AMYLO),TURN=values(TURN),HELIX=values(HELIX),HELAGG=values(HELAGG),BETA=values(BETA),Level_I=values(Level_I),Level_II=values(Level_II),Level_III=values(Level_III),Length=values(Length);"
 
-    data = pd.read_csv('assets/GAS_feat_clusters.tsv', sep='\t', index_col=False)
+    data = pd.read_csv('assets/GAS_feat_clusters.tsv',
+                       sep='\t', index_col=False)
     length = []
     for i in data.index:
         length.append(len(data.loc[i]['Sequence']))
@@ -59,7 +60,7 @@ if os.path.exists('assets/GAS_feat_clusters.tsv'):
     data = data.values.tolist()
 
     try:
-        cursor.executemany(sql,data)
+        cursor.executemany(sql, data)
         db.commit()
         print('Done! Import GAS_feat_clusters.tsv to the gas database.')
     except:
@@ -73,7 +74,7 @@ if os.path.exists('assets/AMP_prediction.tsv'):
     data = data.values.tolist()
 
     try:
-        cursor.executemany(sql,data)
+        cursor.executemany(sql, data)
         db.commit()
         print('Done! Import AMP_prediction.tsv to the gas database.')
     except:
@@ -83,7 +84,8 @@ if os.path.exists('assets/AMP_prediction.tsv'):
 if os.path.exists('assets/AMP_metaG.tsv'):
     cursor = db.cursor()
     sql = "INSERT INTO amp_metagenome(AMP_ID,metagenomes) VALUES (%s, %s) ON DUPLICATE KEY UPDATE AMP_ID=values(AMP_ID);"
-    data = pd.read_csv('assets/AMP_metaG.tsv', sep='\t', index_col=False, header=None)
+    data = pd.read_csv('assets/AMP_metaG.tsv', sep='\t',
+                       index_col=False, header=None)
     output = []
     for i in data.index:
         temp = data.loc[i][1].split(',')
@@ -120,7 +122,7 @@ if os.path.exists('assets/AVG_per_family.tsv'):
     data = data.values.tolist()
 
     try:
-        cursor.executemany(sql,data)
+        cursor.executemany(sql, data)
         db.commit()
         print('Done! Import AVG_per_family.tsv to the gas database.')
     except:
@@ -130,11 +132,12 @@ if os.path.exists('assets/AVG_per_family.tsv'):
 if os.path.exists('assets/STDEV_per_family.tsv'):
     cursor = db.cursor()
     sql = "INSERT INTO family_std_feature(Family_ID,tinyAA,smallAA,aliphaticAA,aromaticAA,nonpolarAA,polarAA,chargedAA,basicAA,acidicAA,charge,pI,aindex,instaindex,boman,hydrophobicity,hmoment,SA_Group1_residue0,SA_Group2_residue0,SA_Group3_residue0,HB_Group1_residue0,HB_Group2_residue0,HB_Group3_residue0,AGG,AMYLO,TURN,HELIX,HELAGG,BETA) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE Family_ID=values(Family_ID),tinyAA=values(tinyAA),smallAA=values(smallAA),aliphaticAA=values(aliphaticAA),aromaticAA=values(aromaticAA),nonpolarAA=values(nonpolarAA),polarAA=values(polarAA),chargedAA=values(chargedAA),basicAA=values(basicAA),acidicAA=values(acidicAA),charge=values(charge),pI=values(pI),aindex=values(aindex),instaindex=values(instaindex),boman=values(boman),hydrophobicity=values(hydrophobicity),hmoment=values(hmoment),SA_Group1_residue0=values(SA_Group1_residue0),SA_Group2_residue0=values(SA_Group2_residue0),SA_Group3_residue0=values(SA_Group3_residue0),HB_Group1_residue0=values(HB_Group1_residue0),HB_Group2_residue0=values(HB_Group2_residue0),HB_Group3_residue0=values(HB_Group3_residue0),AGG=values(AGG),AMYLO=values(AMYLO),TURN=values(TURN),HELIX=values(HELIX),HELAGG=values(HELAGG),BETA=values(BETA);"
-    data = pd.read_csv('assets/STDEV_per_family.tsv', sep='\t', index_col=False)
+    data = pd.read_csv('assets/STDEV_per_family.tsv',
+                       sep='\t', index_col=False)
     data = data.values.tolist()
 
     try:
-        cursor.executemany(sql,data)
+        cursor.executemany(sql, data)
         db.commit()
         print('Done! Import STDEV_per_family.tsv to the gas database.')
     except:
@@ -144,11 +147,12 @@ if os.path.exists('assets/STDEV_per_family.tsv'):
 if os.path.exists('assets/STDEV_per_family.tsv'):
     cursor = db.cursor()
     sql = "INSERT INTO family_std_feature(Family_ID,tinyAA,smallAA,aliphaticAA,aromaticAA,nonpolarAA,polarAA,chargedAA,basicAA,acidicAA,charge,pI,aindex,instaindex,boman,hydrophobicity,hmoment,SA_Group1_residue0,SA_Group2_residue0,SA_Group3_residue0,HB_Group1_residue0,HB_Group2_residue0,HB_Group3_residue0,AGG,AMYLO,TURN,HELIX,HELAGG,BETA) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s) ON DUPLICATE KEY UPDATE Family_ID=values(Family_ID),tinyAA=values(tinyAA),smallAA=values(smallAA),aliphaticAA=values(aliphaticAA),aromaticAA=values(aromaticAA),nonpolarAA=values(nonpolarAA),polarAA=values(polarAA),chargedAA=values(chargedAA),basicAA=values(basicAA),acidicAA=values(acidicAA),charge=values(charge),pI=values(pI),aindex=values(aindex),instaindex=values(instaindex),boman=values(boman),hydrophobicity=values(hydrophobicity),hmoment=values(hmoment),SA_Group1_residue0=values(SA_Group1_residue0),SA_Group2_residue0=values(SA_Group2_residue0),SA_Group3_residue0=values(SA_Group3_residue0),HB_Group1_residue0=values(HB_Group1_residue0),HB_Group2_residue0=values(HB_Group2_residue0),HB_Group3_residue0=values(HB_Group3_residue0),AGG=values(AGG),AMYLO=values(AMYLO),TURN=values(TURN),HELIX=values(HELIX),HELAGG=values(HELAGG),BETA=values(BETA);"
-    data = pd.read_csv('assets/STDEV_per_family.tsv', sep='\t', index_col=False)
+    data = pd.read_csv('assets/STDEV_per_family.tsv',
+                       sep='\t', index_col=False)
     data = data.values.tolist()
 
     try:
-        cursor.executemany(sql,data)
+        cursor.executemany(sql, data)
         db.commit()
         print('Done! Import STDEV_per_family.tsv to the gas database.')
     except:
