@@ -6,11 +6,11 @@ if [ $# -eq 2 ]; then
         if [ -d $2 ]; then
             echo "start import data."
         else
-            echo "$2 is invalid."
+            echo "$2 is invalid dir."
             exit
         fi
     else
-        echo "error, try sh import.sh -h."
+        echo "error, try sh import.sh -h for help."
         exit
     fi
 elif [ $# -eq 1 ]; then
@@ -18,11 +18,11 @@ elif [ $# -eq 1 ]; then
         echo "-s [dir] | the dir of data."
         exit
     else
-        echo "error, try sh import.sh -h."
+        echo "error, try sh import.sh -h for help."
         exit
     fi
 else
-    echo "error, try sh import.sh -h."
+    echo "error, try sh import.sh -h for help."
     exit
 fi
 
@@ -146,6 +146,7 @@ else
     echo "$2/GAS_feat_clusters.tsv not exit."
 fi
 
+# attention
 if [ -f "$2/GAS.fasta" ]; then
     echo "cp $2/GAS.fasta to $SHELL/ampdb/"
     cp -p $2/GAS.fasta $SHELL/ampdb/
@@ -163,6 +164,7 @@ else
     echo "$2/blastdb not exit."
 fi
 
+# attention
 if [ -d "$2/hmmerdb/" ]; then
     echo "cp $2/hmmerdb/* to $SHELL/hmmerdb/"
     cd $2/hmmerdb/
